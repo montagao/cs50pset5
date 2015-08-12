@@ -1,0 +1,12 @@
+0.  Deadly disease which happens to be the longest word in the English language, with 45 characters. 
+1.  Returns resources usage statistics of "who", which in speller.c means the sum of all the resources used by the threads in the process, and stores the data in struct pointed to by the user.
+2.  There are 16 members in the variable of type struct rusage.  
+3.  Not sure, but perhaps to save memory, since by passing in by reference we don't have to reallocate memory to make a copy of both structs which are quite large! 
+4. The first if statement checks if the current character is valid, if so, then it adds the current character to the current word's index, and then increments the index counter by 1. If the current index is longer than the allowed word length,then we can consume the rest of the alphabetical string and ignore the word by continuously setting the word's index to 0. The first else if statement checks if the word has numbers in it( digits) and if so it does the same as above and skips
+the word entirely. The last else if assumes that the current character is a space (since it is not an alphanumeric) or some other punctation and assumes we reached the end of a word, so it terminates the word by adding the nul terminator '\0', updates the word counter, and checks the word's spelling, measuring the time it took to do so. If the word is misspelled, then print it out, and increment the misspelled counter, set index back to 0 to prepare for next word.
+5. relying on fscanf alone might cause issues with punctuation or words with digits in them , which we've dealt with by using fetc.
+6. The const type ensures that the value passed into the parameter cannot be modified. 
+7. I used a hash table, comprised of linked lists using a struct defined as a node which has a value and a pointer to the next node. In order to add a new node to a hash bin, I made the new node point to the old "head" of the bin, and then made the new head the pointer to the new node.  
+8.  Very slow, total running time was always more than 20 secs, and even reached 50 secs at one point!
+9.  I had to find a good hash function that evenly distributed all of the nodes within the table, and a good size for the function so that there were less collisions but still not a huge amount of unused bins, which would up the time of check(). 
+10. I feel as if the check function could still be improved, maybe by sorting the hash's bin and then doing a binary search, however overall I am quite satisfied with the end result!
